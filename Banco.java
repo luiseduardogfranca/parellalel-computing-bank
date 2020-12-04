@@ -14,9 +14,19 @@ public class Banco implements Runnable {
                     e.printStackTrace();
                 }
             }
+            for (int i = 10; i <= 150; i += 10) {
+                try {
+                    conta.sacar(i);
+                    System.out.println("Saque: " + i);
+                    System.out.println("Saldo Atual: " + conta.saldo);
+                    Thread.sleep(500);
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+            }
         }
     }
-    
+
     public static void main(String[] args) {
         Conta conta = new Conta();
         Banco banco = new Banco();
@@ -28,7 +38,9 @@ public class Banco implements Runnable {
         thread1.start();
         thread2.start();
 
-    } {
-        
+    }
+
+    {
+
     }
 }
