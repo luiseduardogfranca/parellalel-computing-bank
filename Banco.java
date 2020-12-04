@@ -4,26 +4,20 @@ public class Banco implements Runnable {
 
     public void run() {
         synchronized (conta) {
-            for (int i = 10; i <= 100; i += 10) {
-                conta.depositar(i);
-                System.out.println("Deposito: " + i);
+            for (int i = 50; i <= 100; i += 10) {
+                conta.depositar(i - 5);
+                System.out.println("Deposito: " + (i - 5));
                 System.out.println("Saldo Atual: " + conta.saldo);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            for (int i = 10; i <= 150; i += 10) {
                 try {
                     conta.sacar(i);
                     System.out.println("Saque: " + i);
                     System.out.println("Saldo Atual: " + conta.saldo);
                     Thread.sleep(500);
                 } catch (Exception e) {
+                    System.out.println("Saque: " + i);
                     System.err.println(e.getMessage());
                 }
-            }
+            } 
         }
     }
 
@@ -39,8 +33,5 @@ public class Banco implements Runnable {
         thread2.start();
 
     }
-
-    {
-
-    }
 }
+
